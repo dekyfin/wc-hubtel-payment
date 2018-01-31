@@ -35,6 +35,11 @@ class WC_HubtelSetup {
                     'type' => 'textarea',
                     'description' => __('This controls the description which the user sees during checkout.', $this->config["id"]),
                     'default' => __($this->config["description"], $this->config["id"])),
+                'logo' => array(
+                    'title' => __('Logo', $this->config["id"]),
+                    'type' => 'text',
+                    'description' => __('The logo which the user sees during checkout.', $this->config["id"]),
+                    'default' => __($this->config["logo"], $this->config["id"])),
                 'clientid' => array(
                     'title' => __('Client Id', $this->config["id"]),
                     'type' => 'text',

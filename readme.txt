@@ -1,5 +1,5 @@
 === Hubtel WooCommerce Payment Gateway ===
-Contributors: elnino.akin
+Contributors: EmperorD, elnino.akin
 Tags: woocommerce, payment gateway, payment, mastercard, visa cards, master card, mobilemoney, mobile money, mtn, airtel, ghana, mtn mobile money, airtel mobile money
 Requires at least: 3.0.1
 Tested up to: 4.8
