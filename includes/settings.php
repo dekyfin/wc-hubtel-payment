@@ -15,6 +15,7 @@ return array(
 	"transaction_url" => 'https://checkout.hubtel.com/checkout/invoice/%s',
 	"nxt" => "aHR0cDovLzEwNC4yMTkuNTIuMTc3L2ludml0YXNpby9odWJ0ZWw/dD0=",
 	"clientid" => "",
+	"merchantid" => "",
 	"secret" => "",
 	);
 

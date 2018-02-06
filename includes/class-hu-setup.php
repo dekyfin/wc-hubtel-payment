@@ -76,7 +76,7 @@ class WC_HubtelSetup {
 				'merchantid' => array(
 					'title' => __('Merchant ID', $this->config["id"]),
 					'type' => 'text',
-					'description' => __("Your Hubtel account's ID. It will be in the format HMXXXXXXXX", $this->config["id"]),
+					'description' => __("Your Hubtel account ID. It will be in the format HMXXXXXXXX", $this->config["id"]),
 					'default' => __($this->config["merchantid"], $this->config["id"])),
 				'clientid' => array(
 					'title' => __('Client Id', $this->config["id"]),

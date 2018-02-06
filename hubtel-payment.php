@@ -103,6 +103,10 @@ function hubtel_payment_init() {
 			$this->config["description"] = $settings["woocommerce_" . $this->id . "_description"];
 			$this->config["clientid"] = $settings["woocommerce_" . $this->id . "_clientid"];
 			$this->config["secret"] = $settings["woocommerce_" . $this->id . "_secret"];
+			$this->config["secret"] = $settings["woocommerce_" . $this->id . "_secret"];
+			$this->config["cconverter"] = $settings["woocommerce_" . $this->id . "_cconverter"];
+			$this->config["icon"] = $settings["woocommerce_" . $this->id . "_icon"];
+			$this->config["merchantid"] = $settings["woocommerce_" . $this->id . "_merchantid"];
 			$this->setup->write_config($this->config);
 		}
 
