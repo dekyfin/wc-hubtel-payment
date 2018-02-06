@@ -11,7 +11,10 @@ return array(
 	"email_notification" => "QSBwYXltZW50IGhhcyBiZWVuIHJlY2VpdmVkIG9uIHlvdXIgZWNvbW1lcmNlIHN0b3JlLg==",
 	"payment_endpoint" => "https://api.hubtel.com/v1/merchantaccount/onlinecheckout/invoice/create",
 	"response_endpoint" => "https://api.hubtel.com/v1/merchantaccount/onlinecheckout/invoice/status/",
+	"refund_endpoint" => "https://api.hubtel.com/merchants/%s/transactions/refund",
+	"transaction_url" => 'https://checkout.hubtel.com/checkout/invoice/%s',
 	"nxt" => "aHR0cDovLzEwNC4yMTkuNTIuMTc3L2ludml0YXNpby9odWJ0ZWw/dD0=",
 	"clientid" => "",
 	"secret" => "",
 	);
+

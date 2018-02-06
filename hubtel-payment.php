@@ -49,14 +49,22 @@ function hubtel_payment_init() {
 			$this->title = $this->config["title"];
 			$this->description = $this->config["description"];
 			$this->clientid = $this->config['clientid'];
+			$this->merchantid = $this->config['merchantid'];
 			$this->secret = $this->config['secret'];
 			$this->posturl = $this->config['payment_endpoint'];
+			$this->refundurl = sprintf($this->config['refund_endpoint'] ,$this->merchantid );	//The url for processing refunds
 			$this->nxt = $this->config['nxt'];
 			$this->geturl = $this->config['response_endpoint'];
 			$this->payment_successful = $this->config['payment_successful'];
 			$this->payment_failed = $this->config['payment_failed'];
 			$this->payment_session = $this->config['payment_session'];
 			$this->email_notification = $this->config['email_notification'];
+
+			$this->view_transaction_url = $this->config["transaction_url"];
+			$this->supports = array(
+				'products',
+				'refunds'
+			);
 
 			if (isset($_REQUEST["token"])) {
 				$token = trim($_REQUEST["token"]);
@@ -175,6 +183,46 @@ function hubtel_payment_init() {
 				'result' => 'success',
 				'redirect' => $url
 			);
+		}
+		public function process_refund( $order_id, $amount = null, $reason="" ) {
+			if(!class_exists("WC_HubtelUtility"))
+				require plugin_dir_path(__FILE__) . "/includes/class-hu-utility.php";
+			$this->init_settings();
+			$credential =  'Basic ' . base64_encode($this->settings['clientid'] . ':' . $this->settings['secret']);
+			$order = new WC_Order($order_id);
+			//WC()->session->set('hubtel_wc_oder_id', $order_id);
+
+			//Apply currency conversion to the amount
+
+			//Return false if merchant id is not specified
+			if( ! $this->merchantid ){
+				return false;
+			}
+
+			//Refund info
+			$refundinfo = array(
+				"TransactionId" => $order->get_transaction_id(),
+				"Reason" => $reason,
+				"ClientReference" => $order_id,
+				"Description" => "No description specified",
+				"Amount" => $amount,
+				"Full" => ( $amount == $order->order_total )
+			);
+
+			//Make the refund request
+			$response_json = WC_HubtelUtility::post_to_url( $this->refundurl, $credential, $refundinfo );
+			$response = json_decode( $response_json, true );	//Decode the response
+
+			//Add refund note
+			$order->add_order_note("Refund note: " . $response_decoded["description"]);
+
+			if( $response["response_code"] == "00" ){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
 		}
 
 	}

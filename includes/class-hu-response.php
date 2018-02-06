@@ -68,7 +68,7 @@ class WC_HubtelResponse {
 					$total_amount = strip_tags($woocommerce->cart->get_cart_total());
 					$message = base64_decode($this->payment_successful) . " " . $order_id;
 					$message_type = "success";
-					$order->payment_complete();
+					$order->payment_complete( $token );
 					$order->update_status("completed");
 					$order->add_order_note("Hubtel payment successful");
 					$woocommerce->cart->empty_cart();
